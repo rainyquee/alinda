@@ -54,10 +54,10 @@
 
         /* HERO SECTION */
         .hero {
-            padding: 120px 40px;
+            padding: 120px 40px 80px;
             background-color: var(--color-soft-cream);
             text-align: center;
-            min-height: 100vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -90,6 +90,28 @@
             letter-spacing: 0.2px;
         }
 
+        /* PHOTO SECTION */
+        .photo-section {
+            padding: 0 var(--space-4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -40px; /* Menarik foto sedikit ke atas agar menyatu dengan hero */
+            z-index: 2;
+            position: relative;
+        }
+
+        .theme-photo {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 50%; /* Membuat foto menjadi bulat */
+            border: 6px solid var(--color-gold-dust); /* Outline dalam warna emas */
+            box-shadow: 0 0 0 10px var(--color-midnight-blue), var(--shadow-lg); /* Outline luar warna biru gelap + bayangan */
+            animation: fadeInUp 1s ease-out;
+            background-color: var(--color-pale-rose);
+        }
+
         /* CARD SECTION */
         .section {
             padding: var(--space-8) var(--space-4);
@@ -102,13 +124,309 @@
             background-color: var(--color-pale-rose);
             padding: 60px 50px;
             max-width: 700px;
+            width: 100%;
             box-shadow: var(--shadow-md);
-            margin: var(--space-6) auto;
+            margin: var(--space-2) auto;
             position: relative;
             animation: fadeInUp 1s ease-out;
         }
 
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h2 {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--color-midnight-blue);
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+
+        .card-divider {
+            width: 50px;
+            height: 2px;
+            background-color: var(--color-gold-dust);
+            margin: 0 auto var(--space-6);
+        }
+
+        .prose {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.85;
+            color: var(--color-charcoal-text);
+            letter-spacing: 0.3px;
+            text-align: justify;
+            margin-bottom: var(--space-4);
+        }
+
+        .prose + .prose {
+            margin-top: var(--space-6);
+        }
+        
+        .lyrics {
+            text-align: center;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        /* CLOSING SECTION */
+        .closing {
+            padding: var(--space-10) var(--space-4);
+            text-align: center;
+            background-color: var(--color-soft-cream);
+        }
+
+        .closing-text {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--color-midnight-blue);
+            max-width: 600px;
+            margin: 0 auto;
+            letter-spacing: 0.2px;
+        }
+
+        .closing-divider {
+            width: 60px;
+            height: 2px;
+            background-color: var(--color-gold-dust);
+            margin: var(--space-6) auto;
+        }
+
+        .signature {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--color-charcoal-text);
+            margin-top: var(--space-6);
+            font-style: italic;
+            letter-spacing: 0.1px;
+        }
+
+        /* NOTIFIKASI SENTUH UNTUK MUSIK */
+        .tap-notice {
+            text-align: center;
+            font-size: 14px;
+            color: var(--color-whisper-gray);
+            margin-top: 20px;
+            font-style: italic;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 40px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .theme-photo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .card {
+                padding: 30px 20px;
+                margin: var(--space-4) auto;
+            }
+
+            .card h2 {
+                font-size: 28px;
+            }
+
+            .prose {
+                font-size: 18px;
+                line-height: 1.75;
+                text-align: left;
+            }
+            
+            .lyrics {
+                font-size: 16px;
+            }
+
+            .closing-text {
+                font-size: 20px;
+            }
+
+            .section,
+            .closing {
+                padding: var(--space-6) var(--space-2);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .card {
+                padding: 20px 15px;
+            }
+
+            .card h2 {
+                font-size: 24px;
+            }
+
+            .prose {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .closing-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO BACKGROUND (DISALAHKAN SECARA OTOMATIS) -->
+    <audio id="bg-music" src="blue.mp3" autoplay loop style="display: none;"></audio>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Selamat Ulang Tahun</h1>
+        <div class="hero-divider"></div>
+        <p>Untuk seseorang yang membuat setiap hari menjadi lebih indah</p>
+        <p class="tap-notice">(Sentuh layar dimana saja jika musik belum berputar)</p>
+    </div>
+
+    <!-- PHOTO SECTION (FOTO ALINDA) -->
+    <div class="photo-section">
+        <!-- PASTIKAN NAMA FILE FOTO SESUAI: foto-alinda.jpg -->
+        <img src="foto-alinda.jpg" alt="Foto Alinda" class="theme-photo">
+    </div>
+
+    <!-- FIRST CARD - THE WISH -->
+    <div class="section">
+        <div class="card">
+            <h2>Untukmu, Alinda</h2>
+            <div class="card-divider"></div>
+            <p class="prose">
+                Ada momen ketika kata-kata terasa tidak cukup untuk menjelaskan betapa berharganya kamu dalam hidupku. Hari ini adalah hari yang tepat untuk mencoba, meskipun aku tahu bahwa ribuan kata pun tidak akan pernah cukup.
+            </p>
+            <p class="prose">
+                Kamu adalah cahaya yang lembut, ketenangan di tengah kegaduhan, dan alasan di balik banyak senyuman terbaikku. Setiap detik yang aku habiskan bersamamu adalah berkah yang tidak akan pernah aku anggap remeh.
+            </p>
+        </div>
+    </div>
+
+    <!-- SECOND CARD - THE DREAM -->
+    <div class="section">
+        <div class="card">
+            <h2>Mimpi Bersama</h2>
+            <div class="card-divider"></div>
+            <p class="prose">
+                Aku bermimpi tentang hari-hari yang akan datang, tentang cerita yang akan kita tulis bersama, tentang momen-momen yang akan membuat kita tertawa sampai lupa waktu. Masa depan terasa lebih cerah karena kamu ada di dalamnya.
+            </p>
+            <p class="prose">
+                Terima kasih telah menjadi bagian dari perjalananku. Terima kasih telah menjadi rumah ketika segalanya terasa kacau. Terima kasih telah menjadi alasan aku ingin menjadi versi terbaik dari diriku.
+            </p>
+        </div>
+    </div>
+
+    <!-- LYRICS SECTION -->
+    <div class="section">
+        <div class="card">
+            <h2>Lirik Lagu Blue</h2>
+            <div class="card-divider"></div>
+            <p class="prose lyrics">
+                Your morning eyes, I could stare like watching stars<br>
+                I could walk you by, and I'll tell without a thought<br>
+                You'd be mine, would you mind if I took your hand tonight?<br>
+                Know you're all that I want this life
+            </p>
+            <p class="prose lyrics">
+                I'll imagine we fell in love<br>
+                I'll nap under moonlight skies with you<br>
+                I think I'll picture us, you with the waves<br>
+                The ocean's colors on your face<br>
+                I'll leave my heart with your air<br>
+                So let me fly with you<br>
+                Will you be forever with me?
+            </p>
+            <p class="prose lyrics">
+                My love will always stay by you<br>
+                I'll keep it safe, so don't you worry a thing<br>
+                I'll tell you I love you more<br>
+                It's stuck with you forever, so promise you won't let it go<br>
+                I'll trust the universe will always bring me to you
+            </p>
+        </div>
+    </div>
+
+    <!-- THIRD CARD - THE PROMISE -->
+    <div class="section">
+        <div class="card">
+            <h2>Janji</h2>
+            <div class="card-divider"></div>
+            <p class="prose">
+                Aku janji untuk selalu mendengarkan dengan sepenuh hati, untuk berdiri di sisimu ketika langit mendung, untuk merayakan setiap kemenangan sekecil apapun. Aku janji untuk mencintaimu tidak hanya hari ini, tapi untuk setiap hari yang akan datang.
+            </p>
+            <p class="prose">
+                Kamu pantas mendapatkan cinta yang tulus, dukungan yang konsisten, dan kebahagiaan yang tak tergoyahkan. Aku berkomitmen untuk memberikan semua itu dan lebih.
+            </p>
+        </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="closing">
+        <p class="closing-text">
+            Semoga pada hari spesialmu ini, kamu merasakan semua kasih sayang yang aku punya, bahkan melebihi kata-kata yang bisa aku ucapkan.
+        </p>
+        <div class="closing-divider"></div>
+        <p class="signature">
+            Dengan sepenuh hati, selalu untukmu
+        </p>
+    </div>
+
+    <!-- SCRIPT AGAR MUSIK BERPUTAR SAAT LAYAR DIKLIK -->
+    <script>
+        // Browser modern memblokir lagu berputar otomatis tanpa izin interaksi pengguna.
+        // Script ini akan memutar lagu begitu layar website disentuh/diklik pertama kali.
+        document.body.addEventListener('click', function() {
+            var audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+        
+        document.body.addEventListener('touchstart', function() {
+            var audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
+2        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
